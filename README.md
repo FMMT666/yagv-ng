@@ -40,25 +40,25 @@ A G-Code viewer for 3D printer slicer generated outputs.
 
   3D print analyses:
   
-   - amount of extrusion
-   - speeds
-   - distances
-   - ...
+  - amount of extrusion
+  - speeds
+  - distances
+  - ...
 
 
   Program:
 
-   - proper loading of all G-Code files
-   - selection of single elements
-   - save/load state for comparing files
-   - ...
-   
-   
+  - proper loading of all G-Code files
+  - selection of single elements
+  - save/load state for comparing files
+  - ...
+
+
 ---
 ## Requirements
 
-   - Python 2 ([www.python.org][4])
-   - pyglet ([www.pyglet.org][5])
+  - Python 2 ([www.python.org][4])
+  - pyglet ([www.pyglet.org][5])
    
 
   Python 3 is not _yet_ supported [...].
@@ -66,9 +66,9 @@ A G-Code viewer for 3D printer slicer generated outputs.
 
   Yagv-ng was developed and tested under
   
-   - Linux, Ubuntu 14.04 LTS
-   - Mac OS X Yosemite and El Capitan
-   - Windows 7
+  - Linux, Ubuntu 14.04 LTS
+  - Mac OS X Yosemite and El Capitan
+  - Windows 7
   
   but should work with all system, that support OpenGL and mouse or touchpad/trackpad 
   support.
