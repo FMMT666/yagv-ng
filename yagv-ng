@@ -19,6 +19,8 @@ import time
 
 class App:
 	def __init__(self):
+		# default file to load
+		self.DEFAULT_FILE_NAME = "data/einhornkatzchen_min.gcode"
 		
 		# viewport variables
 		self.RX         = 0.0
@@ -48,7 +50,7 @@ class App:
 	def main(self):
 		
 		#### MAIN CODE ####
-		print "Yet Another GCode Viewer v%s"%YAGV_VERSION
+		print "Yet Another G-Code Viewer - NG v%s"%YAGV_VERSION
 
 		import sys
 		if len(sys.argv) > 1:
@@ -59,14 +61,14 @@ class App:
 			# get the containing folder
 			script_dir = os.path.dirname(script_path)
 			# default to hana
-			path = os.path.join(script_dir, "data/hana_swimsuit_fv_solid_v1.gcode")
+			path = os.path.join(script_dir, self.DEFAULT_FILE_NAME)
 		
 		self.load(path)
 		
 		# default to the middle layer
 		self.layerIdx = len(self.model.layers)/2
 
-		self.window = MyWindow(self, caption="Yet Another GCode Viewer v%s"%YAGV_VERSION, resizable=True)
+		self.window = MyWindow(self, caption="Yet Another G-Code Viewer - NG v%s"%YAGV_VERSION, resizable=True)
 
 		# debug: log all events
 		# self.window.push_handlers(pyglet.window.event.WindowEventLogger())
