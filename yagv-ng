@@ -26,7 +26,8 @@ class App:
 		self.RX         = 0.0
 		self.RZ         = 0.0
 		self.zoom       = 1.0
-		self.viewHeight = 0.0
+		self.viewZ      = 0.0
+		self.viewX      = 0.0
 		
 		# flags and variables for mouse operation "rotate"
 		self.rotateDrag        = False # dragging in progess
@@ -50,7 +51,7 @@ class App:
 	def main(self):
 		
 		#### MAIN CODE ####
-		print "Yet Another G-Code Viewer - NG v%s"%YAGV_VERSION
+		print "Yet Another GCode Viewer v%s"%YAGV_VERSION
 
 		import sys
 		if len(sys.argv) > 1:
@@ -68,7 +69,7 @@ class App:
 		# default to the middle layer
 		self.layerIdx = len(self.model.layers)/2
 
-		self.window = MyWindow(self, caption="Yet Another G-Code Viewer - NG v%s"%YAGV_VERSION, resizable=True)
+		self.window = MyWindow(self, caption="Yet Another GCode Viewer v%s"%YAGV_VERSION, resizable=True)
 
 		# debug: log all events
 		# self.window.push_handlers(pyglet.window.event.WindowEventLogger())
@@ -280,10 +281,14 @@ class App:
 
 	def layer_drag_end(self, x, y, button, modifiers):
 		self.layerDrag           = False
+
 		
+	def move_view_x(self, dx):
+		self.viewX += dx
+
 		
 	def move_view_z(self, dz):
-		self.viewHeight += dz
+		self.viewZ += dz
 
 
 class MyWindow(pyglet.window.Window):
@@ -371,6 +376,7 @@ class MyWindow(pyglet.window.Window):
 			# right drag moves view up/down
 			if buttons & mouse.RIGHT:
 				self.app.move_view_z( -dy / 10.0 )
+				self.app.move_view_x( -dx / 10.0 )
 
 		# --- SHIFT
 		elif modifiers == key.MOD_SHIFT:
@@ -523,11 +529,16 @@ class MyWindow(pyglet.window.Window):
 			self.app.model.bbox.dy(),
 			self.app.model.bbox.dz()
 		)
+		
 		scale = self.app.zoom / max_width
 		glScaled(scale, scale, scale)
 
 		# adjust camera height
-		gluLookAt( 0, self.app.viewHeight, 2,    0 ,self.app.viewHeight ,0 ,   0 ,1 , 0 )
+		# ASkr TESTING
+#		gluLookAt( 0, self.app.viewZ, 2,    0 ,self.app.viewZ ,0 ,   0 ,1 , 0 )
+		gluLookAt( self.app.viewX, self.app.viewZ, 2,
+		           self.app.viewX, self.app.viewZ, 0,
+		           0 ,1 , 0 )
 		
 		# enable alpha blending
 		glEnable(GL_BLEND)
@@ -536,14 +547,16 @@ class MyWindow(pyglet.window.Window):
 		# rotate axes to match reprap style
 		glRotated(-90, 1,0,0)
 
-		glTranslated(0,0,self.app.viewHeight)
+		# ASkr TODO: also "reverse translate" to viewport x/y offset (#1)
+		glTranslated( 0, 0, self.app.viewZ )
 		
 		# user rotate model
 		glRotated(-self.app.RX, 1,0,0)
 		glRotated(self.app.RZ, 0,0,1)
 
 		# modify the height
-		glTranslated(0,0,-self.app.viewHeight)
+		# ASkr TODO: and translate x/y back (#2)
+		glTranslated( 0, 0, -self.app.viewZ )
 		
 		glTranslated(-self.app.model.bbox.cx(), -self.app.model.bbox.cy(), -self.app.model.bbox.cz())
 		
