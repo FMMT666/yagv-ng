@@ -38,16 +38,17 @@ A G-Code viewer for 3D printer slicer generated outputs.
 ---
 ## Plans
 
-  3D print analyses
-
+  3D print analyses:
+  
    - amount of extrusion
    - speeds
    - distances
    - ...
-   
-  Program
-  
-   . proper loading of all G-Code files
+
+
+  Program:
+
+   - proper loading of all G-Code files
    - selection of single elements
    - save/load state for comparing files
    - ...
@@ -58,8 +59,10 @@ A G-Code viewer for 3D printer slicer generated outputs.
 
    - Python 2 ([www.python.org][4])
    - pyglet ([www.pyglet.org][5])
+   
 
   Python 3 is not _yet_ supported [...].
+
 
   Yagv-ng was developed and tested under
   
@@ -100,7 +103,7 @@ A G-Code viewer for 3D printer slicer generated outputs.
     sudo pip install pyglet
     
   in a terminal window.  
-  If "pip" is not installed, it can be installed by typing
+  If "pip" is not installed, it can be obtained by typing
   
     sudo easy_install pip
     
