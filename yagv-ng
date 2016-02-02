@@ -521,7 +521,12 @@ class MyWindow(pyglet.window.Window):
 		# setup camera
 		glMatrixMode(GL_MODELVIEW)
 		glLoadIdentity()
+		
+		
+		
 		gluLookAt( 0, 1.5, 2,    0 ,0 ,0 ,   0 ,1 ,0 )
+
+
 
 		# fit & user zoom model
 		max_width = max(
@@ -535,10 +540,10 @@ class MyWindow(pyglet.window.Window):
 
 		# adjust camera height
 		# ASkr TESTING
-#		gluLookAt( 0, self.app.viewZ, 2,    0 ,self.app.viewZ ,0 ,   0 ,1 , 0 )
-		gluLookAt( self.app.viewX, self.app.viewZ, 2,
-		           self.app.viewX, self.app.viewZ, 0,
-		           0 ,1 , 0 )
+		gluLookAt( 0, self.app.viewZ, 2,    0 ,self.app.viewZ ,0 ,   0 ,1 , 0 )
+#		gluLookAt( self.app.viewX, self.app.viewZ, 2,
+#		           self.app.viewX, self.app.viewZ, 0,
+#		           0 ,1 , 0 )
 		
 		# enable alpha blending
 		glEnable(GL_BLEND)
@@ -600,7 +605,9 @@ class MyWindow(pyglet.window.Window):
 		
 		glMatrixMode(GL_PROJECTION)
 		glLoadIdentity();
+		
 		glOrtho(0, self.width, 0, self.height, -1, 1)
+		
 		glMatrixMode(GL_MODELVIEW)
 		glLoadIdentity()
 		

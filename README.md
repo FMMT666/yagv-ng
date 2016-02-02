@@ -115,7 +115,8 @@ To be written...
 
     yagv <file name>
 
-If no file name is given, a file from the "data" directory is automatically loaded.
+If no file name is given, the file "einhornkatzchen_min.gcode", from the "data"
+directory is automatically loaded.
   
 
 
