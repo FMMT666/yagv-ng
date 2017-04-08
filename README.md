@@ -4,6 +4,7 @@ Yet Another Gcode Viewer - next generation
 
 A G-Code viewer for 3D printer slicer generated outputs.
 
+![screenshot](data/screenshot.png)
 
 ---
 ## Origins
