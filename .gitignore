@@ -1,4 +1,9 @@
-*.bak
-*~
-*.pyc
-*.nogit
+*
+
+!.gitignore
+!/data
+!/data/*
+
+!README.md
+!gcodeParser.py
+!yagv-ng
